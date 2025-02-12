@@ -119,10 +119,10 @@ export const getProfile = catchAsyncError(async(req, res, next) => {
 })
 export const logout = catchAsyncError(async(req, res, next) => {
     res.status(200).cookie("token", "", {
-        expires:new Date(0),
+        expires: new Date(Date.now()),
         httpOnly:true,
-        secure:true,
-        sameSite:"none"
+        secure: true,
+        sameSite: "none"
     }).json({
         success:true,
         message:"logged out successfully"
