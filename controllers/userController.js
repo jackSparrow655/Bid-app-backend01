@@ -44,9 +44,14 @@ export const register = catchAsyncError(async(req, res, next) => {
     if(isRegister){
         return next(new ErrorHandler("user already registered", 400))
     }
-    const cloudinaryResponse = await cloudinary.uploader.upload(profileImage.tempFilePath, {
-        folder:"MERN AUCTION PLATFORM USERS"
-    })
+    let cloudinaryResponse = ""
+    try{
+        cloudinaryResponse = await cloudinary.uploader.upload(profileImage.tempFilePath, {
+            folder:"MERN AUCTION PLATFORM USERS"
+        })
+    } catch(err){
+        return next(new ErrorHandler(`cloudinary error: ${err}`, 400))
+    }
     
     if(!cloudinaryResponse || cloudinaryResponse.error){
         console.error("cloudinary Error", 
