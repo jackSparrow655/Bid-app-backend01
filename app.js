@@ -18,8 +18,7 @@ config({
 })
 
 app.use(cors({
-    // origin:[process.env.FRONTEND_URL],
-    origin:'*',
+    origin:[process.env.FRONTEND_URL],
     methods:['POST', 'GET', 'UPDATE', 'PUT', 'DELETE'],
     credentials:true
 }))
