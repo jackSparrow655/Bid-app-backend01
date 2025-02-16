@@ -47,7 +47,7 @@ export const updateProofStatus = catchAsyncError(async(req, res, next) =>{
     if(!mongoose.Types.ObjectId.isValid(id)){
         return next(new ErrorHandler("invalid id formatte", 400))
     }
-    const proof = await PaymentProof.findById(id)
+    let proof = await PaymentProof.findById(id)
     if(!proof){
         return next(new ErrorHandler("payment proof not found", 400))
     }
