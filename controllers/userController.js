@@ -118,10 +118,10 @@ export const getProfile = catchAsyncError(async(req, res, next) => {
     next()
 })
 export const logout = catchAsyncError(async(req, res, next) => {
-    res.status(200).cookie("token", "", {
+    res.status(200).cookie("token", "abc", {
         expires: new Date(Date.now()),
         httpOnly:true,
-        sameSite:"none",
+        // sameSite:"none",
         secure:true
     }).json({
         success:true,
